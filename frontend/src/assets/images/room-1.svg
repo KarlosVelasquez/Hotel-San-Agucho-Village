@@ -1,0 +1,5 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#232323" />
+  <rect x="60" y="60" width="680" height="480" rx="24" stroke="#f5f2ee" stroke-opacity="0.2" stroke-width="6" />
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#f5f2ee" fill-opacity="0.7" font-size="48" font-family="Segoe UI, Arial, sans-serif">ROOM 01</text>
+</svg>

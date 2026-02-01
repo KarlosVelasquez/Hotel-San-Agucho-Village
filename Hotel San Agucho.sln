@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelSanAgucho.Api", "backend\HotelSanAgucho.Api\HotelSanAgucho.Api.csproj", "{C240B569-8E13-EBC4-E0F2-213413833AEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C240B569-8E13-EBC4-E0F2-213413833AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C240B569-8E13-EBC4-E0F2-213413833AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C240B569-8E13-EBC4-E0F2-213413833AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C240B569-8E13-EBC4-E0F2-213413833AEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C240B569-8E13-EBC4-E0F2-213413833AEE} = {1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F74F8444-BF2A-416B-A8B4-E7F512FB93F0}
+	EndGlobalSection
+EndGlobal
