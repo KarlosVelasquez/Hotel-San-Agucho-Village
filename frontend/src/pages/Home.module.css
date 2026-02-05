@@ -54,6 +54,20 @@
   background-color: #121212;
 }
 
+.roomsScroller {
+  width: 100%;
+  max-height: calc(100vh - 12rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.roomsScroller::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 .roomsInner {
   width: 100%;
   display: grid;

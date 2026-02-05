@@ -77,6 +77,8 @@ const Home = () => {
   const heroSubtitleRef = useRef(null);
   const heroTitleRef = useRef(null);
   const roomsRef = useRef(null);
+  const roomsScrollRef = useRef(null);
+  const roomsEdgeIntentRef = useRef(0);
   const isSnappingRef = useRef(false);
   const [galleryOrder, setGalleryOrder] = useState(galleryItems);
   const [activeGallery, setActiveGallery] = useState(galleryItems[0]);
@@ -206,6 +208,28 @@ const Home = () => {
       };
 
       const handleWheel = (event) => {
+        const roomsScroller = roomsScrollRef.current;
+        if (roomsScroller && roomsScroller.contains(event.target)) {
+          const canScrollDown =
+            roomsScroller.scrollTop + roomsScroller.clientHeight <
+            roomsScroller.scrollHeight - 2;
+          const canScrollUp = roomsScroller.scrollTop > 2;
+          const direction = Math.sign(event.deltaY);
+
+          if ((direction > 0 && canScrollDown) || (direction < 0 && canScrollUp)) {
+            roomsEdgeIntentRef.current = 0;
+            return;
+          }
+
+          if (roomsEdgeIntentRef.current === direction) {
+            roomsEdgeIntentRef.current = 0;
+          } else {
+            roomsEdgeIntentRef.current = direction;
+            event.preventDefault();
+            return;
+          }
+        }
+
         if (isSnappingRef.current) {
           event.preventDefault();
           return;
@@ -261,7 +285,8 @@ const Home = () => {
       </section>
 
       <section className={styles.rooms} aria-labelledby="rooms-title">
-        <div className={styles.roomsInner} ref={roomsRef}>
+        <div className={styles.roomsScroller} ref={roomsScrollRef}>
+          <div className={styles.roomsInner} ref={roomsRef}>
           <header className={styles.roomsHeader}>
             <h2 id="rooms-title" className={styles.roomsTitle}>
               Habitaciones
@@ -302,9 +327,6 @@ const Home = () => {
               </article>
             ))}
           </div>
-          
-          <div  >
-
           </div>
         </div>
       </section>
