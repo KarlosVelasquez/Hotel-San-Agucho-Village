@@ -5,7 +5,67 @@
   scroll-snap-type: none;
   background-color: #0c0c0c;
   color: #f5f2ee;
-  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  font-family: "Work Sans", "Segoe UI", system-ui, sans-serif;
+  position: relative;
+}
+
+.sectionNav {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(10, 10, 10, 0.55);
+  border: 1px solid rgba(245, 242, 238, 0.12);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  z-index: 20;
+}
+
+.sectionNavButton {
+  border: none;
+  background: transparent;
+  color: #f5f2ee;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.sectionNavButton:hover {
+  background: rgba(245, 242, 238, 0.12);
+}
+
+.socialButtons {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 20;
+}
+
+.socialButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.2rem;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.65);
+  color: #f5f2ee;
+  border: 1px solid rgba(245, 242, 238, 0.2);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.socialButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
 }
 
 .hero {
@@ -24,12 +84,29 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
 }
 
 .heroContent {
   max-width: 720px;
   display: grid;
   gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.heroSplitOverlay {
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  background: linear-gradient(
+    90deg,
+    rgba(8, 8, 8, 0.75) 100% 1000%,
+    rgba(8, 8, 8, 0) 100% 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .title {

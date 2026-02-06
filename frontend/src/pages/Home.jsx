@@ -3,10 +3,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import homeimage from "../assets/images/home.webp";
-import room1Image from "../assets/images/room-1.svg";
-import room2Image from "../assets/images/room-2.svg";
-import room3Image from "../assets/images/room-3.svg";
-import room4Image from "../assets/images/room-4.svg";
+import room1Image from "../assets/images/room1.webp";
+import room2Image from "../assets/images/room2.webp";
+import room3Image from "../assets/images/room3.webp";
+import room4Image from "../assets/images/room4.webp";
+import room5Image from "../assets/images/comedorexterior.webp";
+import room6Image from "../assets/images/piscina.webp";
+import room7Image from "../assets/images/spa.webp";
+import room8Image from "../assets/images/ambiente.webp";
 import styles from "./Home.module.css";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -43,31 +47,31 @@ const galleryItems = [
     id: 1,
     title: "Lobby principal",
     description: "Bienvenida elegante con iluminación cálida.",
-    image: room1Image,
+    image: homeimage,
   },
   {
     id: 2,
     title: "Piscina exterior",
     description: "Relajación total con vista a los jardines.",
-    image: room2Image,
+    image: room6Image,
   },
   {
     id: 3,
     title: "Restaurante",
     description: "Sabores locales con un toque contemporáneo.",
-    image: room3Image,
+    image: room5Image,
   },
   {
     id: 4,
     title: "Spa & bienestar",
     description: "Momentos de calma y descanso.",
-    image: room4Image,
+    image: room7Image,
   },
   {
     id: 5,
     title: "Terraza lounge",
     description: "Atardeceres con ambiente relajado.",
-    image: homeimage,
+    image: room8Image,
   },
 ];
 
@@ -76,8 +80,11 @@ const Home = () => {
   const heroRef = useRef(null);
   const heroSubtitleRef = useRef(null);
   const heroTitleRef = useRef(null);
+  const heroSectionRef = useRef(null);
   const roomsRef = useRef(null);
   const roomsScrollRef = useRef(null);
+  const roomsSectionRef = useRef(null);
+  const gallerySectionRef = useRef(null);
   const roomsEdgeIntentRef = useRef(0);
   const isSnappingRef = useRef(false);
   const [galleryOrder, setGalleryOrder] = useState(galleryItems);
@@ -262,13 +269,66 @@ const Home = () => {
     return () => ctx.revert();
   }, []);
 
+  const handleNavClick = (targetRef) => {
+    if (!targetRef?.current || !mainRef.current) return;
+    gsap.to(mainRef.current, {
+      scrollTo: { y: targetRef.current, autoKill: false },
+      duration: 1.4,
+      ease: "power2.inOut",
+    });
+  };
+
   return (
     <main className={styles.home} ref={mainRef}>
+      <nav className={styles.sectionNav} aria-label="Secciones">
+        <button
+          type="button"
+          className={styles.sectionNavButton}
+          onClick={() => handleNavClick(heroSectionRef)}
+        >
+          Inicio
+        </button>
+        <button
+          type="button"
+          className={styles.sectionNavButton}
+          onClick={() => handleNavClick(roomsSectionRef)}
+        >
+          Habitaciones
+        </button>
+        <button
+          type="button"
+          className={styles.sectionNavButton}
+          onClick={() => handleNavClick(gallerySectionRef)}
+        >
+          Espacios del hotel
+        </button>
+      </nav>
+
+      <div className={styles.socialButtons} aria-label="Redes sociales">
+        <a
+          className={styles.socialButton}
+          href=""
+          target="_blank"
+          rel="noreferrer"
+        >
+          WhatsApp
+        </a>
+        <a
+          className={styles.socialButton}
+          href=""
+          target="_blank"
+          rel="noreferrer"
+        >
+          Instagram
+        </a>
+      </div>
       <section
         className={styles.hero}
         aria-labelledby="hotel-title"
         style={{ "--hero-bg": `url(${homeimage})` }}
+        ref={heroSectionRef}
       >
+        <div className={styles.heroSplitOverlay} aria-hidden="true" />
         <div ref={heroRef} className={styles.heroContent}>
 
           <h1
@@ -284,7 +344,11 @@ const Home = () => {
         </div>
       </section>
 
-      <section className={styles.rooms} aria-labelledby="rooms-title">
+      <section
+        className={styles.rooms}
+        aria-labelledby="rooms-title"
+        ref={roomsSectionRef}
+      >
         <div className={styles.roomsScroller} ref={roomsScrollRef}>
           <div className={styles.roomsInner} ref={roomsRef}>
           <header className={styles.roomsHeader}>
@@ -331,7 +395,11 @@ const Home = () => {
         </div>
       </section>
 
-      <section className={styles.gallery} aria-labelledby="gallery-title">
+      <section
+        className={styles.gallery}
+        aria-labelledby="gallery-title"
+        ref={gallerySectionRef}
+      >
         <div
           key={activeGallery.id}
           className={styles.galleryBackdrop}
