@@ -33,11 +33,3 @@ img {
 }
 
 
-.home {
-  scrollbar-width: none;
-}
-
-.home::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}

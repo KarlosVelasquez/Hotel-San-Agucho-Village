@@ -17,10 +17,8 @@
   display: flex;
   gap: 0.75rem;
   padding: 0.5rem 0.75rem;
-  background: rgba(10, 10, 10, 0.55);
-  border: 1px solid rgba(245, 242, 238, 0.12);
   border-radius: 999px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px) saturate(120%);
   z-index: 20;
 }
 
@@ -33,6 +31,7 @@
   border-radius: 999px;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
+ 
 }
 
 .sectionNavButton:hover {
@@ -89,9 +88,12 @@
 }
 
 .heroContent {
-  max-width: 720px;
   display: grid;
   gap: 1rem;
+  width: 100%;
+  max-width: none;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
   position: relative;
   z-index: 2;
 }
@@ -101,25 +103,53 @@
   inset: 0;
   width: 50%;
   background: linear-gradient(
-    90deg,
-    rgba(8, 8, 8, 0.75) 100% 1000%,
-    rgba(8, 8, 8, 0) 100% 100%
+    135deg,
+    rgba(20, 20, 20, 0.35) 0%,
+    rgba(20, 20, 20, 0.18) 60%,
+    rgba(20, 20, 20, 0.05) 100%
   );
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  border-right: 1px solid rgba(245, 242, 238, 0.104);
   pointer-events: none;
   z-index: 1;
 }
 
 .title {
-  font-size: clamp(9.8rem, 9.8vw, 9.8rem);
+  font-size: clamp(5rem, 9.8vw, 9.8rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin: 0;
+  grid-column: 1;
+  justify-self: start;
+  text-align: left;
+  margin-bottom: 15rem;
+  max-width: 100%;
+  color: transparent;
+  background-image: var(--hero-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 900px) {
+  .title {
+    font-size: clamp(3.2rem, 14vw, 6rem);
+    margin-bottom: 6rem;
+  }
 }
 
 .subtitle {
   margin: 0;
-  font-size: clamp(4rem, 1.6vw, 4rem);
-  color: rgba(245, 242, 238, 0.8);
+  font-size: clamp(5.8rem, 3.2vw, 5rem);
+  color: rgba(255, 255, 255, 0.91);
+  grid-column: 2;
+  justify-self: end;
+  text-align: left;
+  margin-top: 4rem;
 }
 
 .rooms {
@@ -157,14 +187,36 @@
   max-width: 560px;
 }
 
-.roomsTitle {
-  font-size: clamp(2rem, 3vw, 2.8rem);
+.roomsTitle,
+.galleryTitle {
+  font-size: clamp(2.2rem, 3.4vw, 3.2rem);
   margin: 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.6rem;
 }
 
-.roomsDescription {
+.roomsTitle::after,
+.galleryTitle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: clamp(80px, 18vw, 160px);
+  height: 2px;
+  background: linear-gradient(90deg, rgba(245, 242, 238, 0.9), rgba(245, 242, 238, 0.1));
+}
+
+.roomsDescription,
+.galleryDescription,
+.galleryActiveText {
   margin: 0;
-  color: rgba(245, 242, 238, 0.75);
+  color: rgba(245, 242, 238, 0.78);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  line-height: 1.7;
+  max-width: 44ch;
 }
 
 .gallery {
@@ -205,13 +257,7 @@
 }
 
 .galleryTitle {
-  margin: 0;
-  font-size: clamp(2rem, 3vw, 2.8rem);
-}
-
-.galleryDescription {
-  margin: 0;
-  color: rgba(245, 242, 238, 0.75);
+  font-size: clamp(2.2rem, 3.4vw, 3.2rem);
 }
 
 .galleryContent {
@@ -235,12 +281,12 @@
 .galleryActiveTitle {
   margin: 0;
   font-size: 1.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .galleryActiveText {
-  margin: 0;
   color: rgba(245, 242, 238, 0.8);
-  line-height: 1.6;
 }
 
 .galleryGrid {
@@ -379,6 +425,8 @@
 .roomOverlayTitle {
   margin: 0;
   font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .roomOverlayText {
@@ -424,6 +472,8 @@
 .roomTitle {
   margin: 0;
   font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .roomText {
@@ -433,8 +483,57 @@
 }
 
 @media (max-width: 720px) {
+  .sectionNav {
+    top: 14px;
+    left: 12px;
+    right: 12px;
+    transform: none;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .socialButtons {
+    right: 33%;
+    bottom: 16px;
+    transform: translateX(50%);
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .hero {
+    padding: 0 6vw;
+  }
+
+  .heroContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .heroSplitOverlay {
+    width: 100%;
+    border-right: none;
+  }
+
+  .title {
+    font-size: clamp(6.5rem, 14vw, 5.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: clamp(3.4rem, 7vw, 2.6rem);
+    margin-bottom: 6rem;
+    justify-self: start;
+  }
+
   .rooms {
     padding: 4rem 6vw;
+  }
+
+  .roomsGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
   }
 
   .roomImageWrapper {
@@ -443,6 +542,7 @@
 
   .roomCard {
     height: 320px;
+    width: 100%;
   }
 
   .roomOverlayContent {
@@ -459,6 +559,22 @@
 
   .galleryActive {
     padding: 1.5rem;
+  }
+
+  .galleryGrid {
+    width: 100%;
+    max-height: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .galleryItem {
+    width: 100%;
+    height: 180px;
+  }
+
+  .galleryThumb {
+    height: 120px;
   }
 }
 

@@ -81,6 +81,7 @@ const Home = () => {
   const heroSubtitleRef = useRef(null);
   const heroTitleRef = useRef(null);
   const heroSectionRef = useRef(null);
+  const navRef = useRef(null);
   const roomsRef = useRef(null);
   const roomsScrollRef = useRef(null);
   const roomsSectionRef = useRef(null);
@@ -258,6 +259,7 @@ const Home = () => {
       };
 
       scroller.addEventListener("wheel", handleWheel, { passive: false });
+
       ScrollTrigger.addEventListener("refresh", () => ScrollTrigger.update());
       ScrollTrigger.refresh();
 
@@ -280,7 +282,7 @@ const Home = () => {
 
   return (
     <main className={styles.home} ref={mainRef}>
-      <nav className={styles.sectionNav} aria-label="Secciones">
+      <nav ref={navRef} className={styles.sectionNav} aria-label="Secciones">
         <button
           type="button"
           className={styles.sectionNavButton}
