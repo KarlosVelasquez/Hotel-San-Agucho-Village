@@ -142,6 +142,7 @@
   }
 }
 
+
 @media (max-width: 480px) {
   .title {
     font-size: clamp(2.4rem, 12vw, 4.2rem);
