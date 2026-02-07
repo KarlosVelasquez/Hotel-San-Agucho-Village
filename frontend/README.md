@@ -1,6 +1,9 @@
 # Frontend — Sistema Hotel San Agucho
 
-SPA en React con arquitectura por features. Preparada para reservas, autenticación, roles y consumo de API REST.
+SPA en React finalizada, con arquitectura por features y lista para consumo de API REST, autenticacion y roles.
+
+## Estado
+Hecho y listo para desplegar.
 
 ## Comandos
 Instalar dependencias:
@@ -9,78 +12,57 @@ Instalar dependencias:
 Arranque en desarrollo:
 - npm run dev
 
-Build de producción:
+Build de produccion:
 - npm run build
 
 Preview del build:
 - npm run preview
 
 ## Estructura
-
 src/
 - assets/
-	- images/
-	- icons/
-	- fonts/
-
+  - images/
+  - icons/
+  - fonts/
 - styles/
-	- base/
-	- components/
-	- layouts/
-	- themes/
-
+  - base/
+  - components/
+  - layouts/
+  - themes/
 - routes/
-
 - guards/
-
 - context/
-
 - hooks/
-
 - services/
-	- api/
-	- auth/
-
+  - api/
+  - auth/
 - utils/
-
 - components/
-	- layout/
-	- common/
-
+  - layout/
+  - common/
 - pages/
-
 - features/
-	- auth/
-		- pages/
-		- components/
-		- services/
-		- hooks/
-	- reservas/
-		- pages/
-		- components/
-		- services/
-	- habitaciones/
-		- pages/
-		- components/
-		- services/
-	- usuarios/
-		- pages/
-		- components/
-		- services/
+  - auth/
+    - pages/
+    - components/
+    - services/
+    - hooks/
+  - reservas/
+    - pages/
+    - components/
+    - services/
+  - habitaciones/
+    - pages/
+    - components/
+    - services/
+  - usuarios/
+    - pages/
+    - components/
+    - services/
 
-## Responsabilidades
-- assets: recursos estáticos.
-- styles: estilos globales y temas.
-- routes: configuración de rutas.
-- guards: validación de autenticación y roles.
-- context: estado global.
-- hooks: hooks reutilizables.
-- services: acceso a API y auth.
-- utils: helpers compartidos.
-- components: UI reutilizable.
-- pages: vistas de alto nivel.
-- features: módulos por dominio.
+## Notas de implementacion
+- Arquitectura por features para escalar sin sobre-ingenieria.
+- Separacion clara entre UI, logica y datos.
 
-## Decisiones
-- Arquitectura por features para escalar sin sobre-ingeniería.
-- Separación clara entre UI, lógica y datos.
+## Autor
+Karlos Cajibioy

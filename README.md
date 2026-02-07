@@ -1,8 +1,13 @@
 # Sistema Hotel San Agucho
 
-## Objetivo
-Estructura profesional y escalable para un sistema hotelero. La fase actual contempla solo el frontend (vistas) en React. El backend y la base de datos se implementarán en una fase futura.
+Proyecto finalizado con estructura profesional para un sistema hotelero. Incluye frontend en React y backend en ASP.NET Core listos para integracion con API, autenticacion y base de datos.
 
-## Documentación por módulo
+## Estado
+Hecho y listo para uso y extension.
+
+## Documentacion
 - Frontend: [frontend/README.md](frontend/README.md)
 - Backend: [backend/HotelSanAgucho.Api/README.md](backend/HotelSanAgucho.Api/README.md)
+
+## Autor
+Karlos Cajibioy

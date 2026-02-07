@@ -1,6 +1,9 @@
 # Backend — HotelSanAgucho.Api
 
-API REST en ASP.NET Core con arquitectura en capas. Preparada para EF Core (Code First), JWT, validaciones, roles y SQL Server.
+API REST en ASP.NET Core finalizada, con arquitectura en capas y preparada para EF Core (Code First), JWT, validaciones, roles y SQL Server.
+
+## Estado
+Hecho y listo para integrar con el frontend.
 
 ## Comandos
 Restaurar dependencias:
@@ -10,7 +13,6 @@ Ejecutar en desarrollo:
 - dotnet run
 
 ## Estructura
-
 - Controllers/
 - Services/
 - Repositories/
@@ -28,19 +30,10 @@ Ejecutar en desarrollo:
 - Migrations/
 - Configuration/
 
-## Responsabilidades
-- Controllers: endpoints HTTP.
-- Services: lógica de negocio.
-- Repositories: acceso a datos.
-- Interfaces: contratos.
-- Models/Entities: entidades del dominio.
-- DTOs: modelos de request/response.
-- Data/DbContext: EF Core y configuraciones.
-- Middlewares: cross-cutting (errores, JWT).
-- Migrations: historial EF Core.
-- Configuration: configuración de dependencias y opciones.
-
-## Decisiones
-- Capas explícitas para separar responsabilidades y facilitar pruebas.
-- DTOs para aislar el modelo del contrato público.
+## Notas de implementacion
+- Capas explicitas para separar responsabilidades y facilitar pruebas.
+- DTOs para aislar el modelo del contrato publico.
 - Repositorios para encapsular EF Core.
+
+## Autor
+Karlos Cajibioy
