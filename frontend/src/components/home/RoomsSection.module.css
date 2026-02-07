@@ -1,0 +1,218 @@
+.rooms {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 6rem 8vw;
+  scroll-snap-align: start;
+  background-color: #121212;
+}
+
+.roomsScroller {
+  width: 100%;
+  max-height: calc(100vh - 12rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.roomsScroller::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.roomsInner {
+  width: 100%;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.roomsHeader {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 560px;
+}
+
+.roomsTitle {
+  font-size: clamp(2.2rem, 3.4vw, 3.2rem);
+  margin: 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.6rem;
+}
+
+.roomsTitle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: clamp(80px, 18vw, 160px);
+  height: 2px;
+  background: linear-gradient(90deg, rgba(245, 242, 238, 0.9), rgba(245, 242, 238, 0.1));
+}
+
+.roomsDescription {
+  margin: 0;
+  color: rgba(245, 242, 238, 0.78);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  line-height: 1.7;
+  max-width: 44ch;
+}
+
+.roomsGrid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+}
+
+.roomCard {
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  overflow: hidden;
+  display: block;
+  height: 420px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform, box-shadow;
+}
+
+.roomCard:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+.roomImageWrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.roomImage {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.roomCard:hover .roomImage {
+  transform: scale(1.04);
+}
+
+.roomOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(0deg, rgba(8, 8, 8, 0.85), rgba(8, 8, 8, 0));
+  opacity: 0;
+  transform: translateY(24%);
+  transition: opacity 0.35s ease, transform 0.45s ease;
+  pointer-events: none;
+}
+
+.roomCard:hover .roomOverlay {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.roomOverlayContent {
+  padding: 2rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.roomOverlayTitle {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.roomOverlayText {
+  margin: 0;
+  color: rgba(245, 242, 238, 0.85);
+  line-height: 1.5;
+}
+
+.roomOverlayActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.roomOverlayButton {
+  border: none;
+  background: #f5f2ee;
+  color: #101010;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.roomOverlayButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.roomOverlayButtonSecondary {
+  background: rgba(245, 242, 238, 0.18);
+  color: #f5f2ee;
+  border: 1px solid rgba(245, 242, 238, 0.5);
+}
+
+.roomBody {
+  padding: 1.5rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.roomTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.roomText {
+  margin: 0;
+  color: rgba(245, 242, 238, 0.75);
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .rooms {
+    padding: 4rem 6vw;
+  }
+
+  .roomsGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .roomImageWrapper {
+    height: 100%;
+  }
+
+  .roomCard {
+    height: 320px;
+    width: 100%;
+  }
+
+  .roomOverlayContent {
+    padding: 1.4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .rooms {
+    scroll-snap-stop: normal;
+  }
+}

@@ -2,78 +2,32 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import homeimage from "../assets/images/home.webp";
-import room1Image from "../assets/images/room1.webp";
-import room2Image from "../assets/images/room2.webp";
-import room3Image from "../assets/images/room3.webp";
-import room4Image from "../assets/images/room4.webp";
-import room5Image from "../assets/images/Comedorexterior.webp";
-import room6Image from "../assets/images/Piscina.webp";
-import room7Image from "../assets/images/spa.webp";
-import room8Image from "../assets/images/ambiente.webp";
+import SectionNav from "../components/home/SectionNav.jsx";
+import SocialButtons from "../components/home/SocialButtons.jsx";
+import HeroSection from "../components/home/HeroSection.jsx";
+import RoomsSection from "../components/home/RoomsSection.jsx";
+import GallerySection from "../components/home/GallerySection.jsx";
+import { galleryItems as galleryMedia, heroImage, rooms as roomsMedia } from "../data/homeData.js";
+import { galleryItemsCopy, roomsItems } from "../data/homeCopy.js";
 import styles from "./Home.module.css";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-const rooms = [
-  {
-    id: 1,
-    title: "Habitación Deluxe",
-    description: "Amplia, luminosa y con vista panorámica.",
-    image: room1Image,
-  },
-  {
-    id: 2,
-    title: "Suite Ejecutiva",
-    description: "Espacio premium con área de trabajo y confort total.",
-    image: room2Image,
-  },
-  {
-    id: 3,
-    title: "Habitación Familiar",
-    description: "Ideal para familias, cómoda y funcional.",
-    image: room3Image,
-  },
-  {
-    id: 4,
-    title: "Estándar",
-    description: "Minimalista, eficiente y acogedora.",
-    image: room4Image,
-  },
-];
+const rooms = roomsMedia.map((room) => {
+  const copy = roomsItems.find((item) => item.id === room.id);
+  return {
+    ...room,
+    ...copy,
+  };
+});
 
-const galleryItems = [
-  {
-    id: 1,
-    title: "Lobby principal",
-    description: "Bienvenida elegante con iluminación cálida.",
-    image: homeimage,
-  },
-  {
-    id: 2,
-    title: "Piscina exterior",
-    description: "Relajación total con vista a los jardines.",
-    image: room6Image,
-  },
-  {
-    id: 3,
-    title: "Restaurante",
-    description: "Sabores locales con un toque contemporáneo.",
-    image: room5Image,
-  },
-  {
-    id: 4,
-    title: "Spa & bienestar",
-    description: "Momentos de calma y descanso.",
-    image: room7Image,
-  },
-  {
-    id: 5,
-    title: "Terraza lounge",
-    description: "Atardeceres con ambiente relajado.",
-    image: room8Image,
-  },
-];
+const galleryItems = galleryMedia.map((item) => {
+  const copy = galleryItemsCopy.find((entry) => entry.id === item.id);
+  return {
+    ...item,
+    ...copy,
+  };
+});
 
 const Home = () => {
   const mainRef = useRef(null);
@@ -81,7 +35,6 @@ const Home = () => {
   const heroSubtitleRef = useRef(null);
   const heroTitleRef = useRef(null);
   const heroSectionRef = useRef(null);
-  const navRef = useRef(null);
   const roomsRef = useRef(null);
   const roomsScrollRef = useRef(null);
   const roomsSectionRef = useRef(null);
@@ -282,173 +235,33 @@ const Home = () => {
 
   return (
     <main className={styles.home} ref={mainRef}>
-      <nav ref={navRef} className={styles.sectionNav} aria-label="Secciones">
-        <button
-          type="button"
-          className={styles.sectionNavButton}
-          onClick={() => handleNavClick(heroSectionRef)}
-        >
-          Inicio
-        </button>
-        <button
-          type="button"
-          className={styles.sectionNavButton}
-          onClick={() => handleNavClick(roomsSectionRef)}
-        >
-          Habitaciones
-        </button>
-        <button
-          type="button"
-          className={styles.sectionNavButton}
-          onClick={() => handleNavClick(gallerySectionRef)}
-        >
-          Espacios del hotel
-        </button>
-      </nav>
-
-      <div className={styles.socialButtons} aria-label="Redes sociales">
-        <a
-          className={styles.socialButton}
-          href=""
-          target="_blank"
-          rel="noreferrer"
-        >
-          WhatsApp
-        </a>
-        <a
-          className={styles.socialButton}
-          href=""
-          target="_blank"
-          rel="noreferrer"
-        >
-          Instagram
-        </a>
-      </div>
-      <section
-        className={styles.hero}
-        aria-labelledby="hotel-title"
-        style={{ "--hero-bg": `url(${homeimage})` }}
-        ref={heroSectionRef}
-      >
-        <div className={styles.heroSplitOverlay} aria-hidden="true" />
-        <div ref={heroRef} className={styles.heroContent}>
-
-          <h1
-            id="hotel-title"
-            className={styles.title}
-            ref={heroTitleRef}
-          >
-            Hotel 
-          </h1>
-          <h2 id="hotel-subtitle" className={styles.subtitle} ref={heroSubtitleRef}> 
-            SAN AGUCHO VILLAGE
-          </h2>
-        </div>
-      </section>
-
-      <section
-        className={styles.rooms}
-        aria-labelledby="rooms-title"
-        ref={roomsSectionRef}
-      >
-        <div className={styles.roomsScroller} ref={roomsScrollRef}>
-          <div className={styles.roomsInner} ref={roomsRef}>
-          <header className={styles.roomsHeader}>
-            <h2 id="rooms-title" className={styles.roomsTitle}>
-              Habitaciones
-            </h2>
-            <p className={styles.roomsDescription}>
-              Diseñadas para el descanso, pensadas para cada tipo de huésped.
-            </p>
-          </header>
-
-          <div className={styles.roomsGrid}>
-            {rooms.map((room) => (
-              <article key={room.id} className={`${styles.roomCard} room-card`}>
-                <div className={styles.roomImageWrapper}>
-                  <img
-                    src={room.image}
-                    alt={room.title}
-                    className={`${styles.roomImage} room-parallax`}
-                    loading="lazy"
-                  />
-                </div>
-                <div className={styles.roomOverlay}>
-                  <div className={styles.roomOverlayContent}>
-                    <h3 className={styles.roomOverlayTitle}>{room.title}</h3>
-                    <p className={styles.roomOverlayText}>{room.description}</p>
-                    <div className={styles.roomOverlayActions}>
-                      <button className={styles.roomOverlayButton} type="button">
-                        Ver detalles
-                      </button>
-                      <button
-                        className={`${styles.roomOverlayButton} ${styles.roomOverlayButtonSecondary}`}
-                        type="button"
-                      >
-                        Reservar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className={styles.gallery}
-        aria-labelledby="gallery-title"
-        ref={gallerySectionRef}
-      >
-        <div
-          key={activeGallery.id}
-          className={styles.galleryBackdrop}
-          style={{ "--gallery-bg": `url(${activeGallery.image})` }}
-        >
-          <div className={styles.galleryInner}>
-            <header className={styles.galleryHeader}>
-              <h2 id="gallery-title" className={styles.galleryTitle}>
-                Espacios del hotel
-              </h2>
-              <p className={styles.galleryDescription}>
-                Haz clic en cada imagen para verla en grande como fondo.
-              </p>
-            </header>
-
-            <div className={styles.galleryContent}>
-              <div className={styles.galleryActive}
-                aria-live="polite"
-              >
-                <h3 className={styles.galleryActiveTitle}>{activeGallery.title}</h3>
-                <p className={styles.galleryActiveText}>{activeGallery.description}</p>
-              </div>
-
-              <div className={styles.galleryGrid}>
-                {galleryOrder.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className={`${styles.galleryItem} ${item.id === activeGallery.id ? styles.galleryItemActive : ""}`}
-                    onClick={() => {
-                      setActiveGallery(item);
-                      setGalleryOrder((prev) => {
-                        const next = prev.filter((entry) => entry.id !== item.id);
-                        return [item, ...next];
-                      });
-                    }}
-                    aria-pressed={item.id === activeGallery.id}
-                  >
-                    <span className={styles.galleryThumb} style={{ backgroundImage: `url(${item.image})` }} />
-                    <span className={styles.galleryItemLabel}>{item.title}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SectionNav
+        onNavClick={handleNavClick}
+        heroSectionRef={heroSectionRef}
+        roomsSectionRef={roomsSectionRef}
+        gallerySectionRef={gallerySectionRef}
+      />
+      <SocialButtons />
+      <HeroSection
+        heroSectionRef={heroSectionRef}
+        heroRef={heroRef}
+        heroTitleRef={heroTitleRef}
+        heroSubtitleRef={heroSubtitleRef}
+        backgroundImage={heroImage}
+      />
+      <RoomsSection
+        roomsSectionRef={roomsSectionRef}
+        roomsScrollRef={roomsScrollRef}
+        roomsRef={roomsRef}
+        rooms={rooms}
+      />
+      <GallerySection
+        gallerySectionRef={gallerySectionRef}
+        activeGallery={activeGallery}
+        galleryOrder={galleryOrder}
+        setActiveGallery={setActiveGallery}
+        setGalleryOrder={setGalleryOrder}
+      />
     </main>
   );
 };

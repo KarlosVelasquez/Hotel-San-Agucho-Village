@@ -1,0 +1,133 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 8vw;
+  scroll-snap-align: start;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.65)
+    ),
+    var(--hero-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroContent {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-width: none;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.heroSplitOverlay {
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 20, 0.35) 0%,
+    rgba(20, 20, 20, 0.18) 60%,
+    rgba(20, 20, 20, 0.05) 100%
+  );
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  border-right: 1px solid rgba(245, 242, 238, 0.104);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.title {
+  font-size: clamp(5rem, 9.8vw, 9.8rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0;
+  grid-column: 1;
+  justify-self: start;
+  text-align: left;
+  margin-bottom: 15rem;
+  max-width: 100%;
+  color: transparent;
+  background-image: var(--hero-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: clamp(5.8rem, 3.2vw, 5rem);
+  color: rgba(255, 255, 255, 0.91);
+  grid-column: 2;
+  justify-self: end;
+  text-align: left;
+  margin-top: 4rem;
+}
+
+@media (max-width: 900px) {
+  .title {
+    font-size: clamp(3.2rem, 14vw, 6rem);
+    margin-bottom: 6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: clamp(2.4rem, 12vw, 4.2rem);
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 400px) {
+  .title {
+    font-size: clamp(2.1rem, 11vw, 3.8rem);
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding: 0 6vw;
+  }
+
+  .heroContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .heroSplitOverlay {
+    width: 100%;
+    border-right: none;
+  }
+
+  .title {
+    font-size: clamp(6.5rem, 14vw, 5.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: clamp(3.4rem, 7vw, 2.6rem);
+    margin-bottom: 6rem;
+    justify-self: start;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    scroll-snap-stop: normal;
+  }
+}
