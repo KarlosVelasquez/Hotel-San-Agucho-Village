@@ -9,8 +9,8 @@ const HeroSection = ({ heroSectionRef, heroRef, heroTitleRef, heroSubtitleRef })
   >
     {/* Imagen responsive para performance móvil */}
     <img
-      src="/assets/images/home.webp"
-      srcSet="/assets/images/home.webp 400w, /assets/images/home.webp 800w"
+      src="/assets/images/home.avif"
+      srcSet="/assets/images/home.webp 400w, /assets/images/home.avif 800w"
       sizes="(max-width: 768px) 100vw, 800px"
       alt="Hotel San Agucho Hero"
       style={{
